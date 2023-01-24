@@ -8,7 +8,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, char_count = 0;
+	int i = 0, char_count = 0, check;
 	va_list args;
 
 	if (!format)
@@ -19,15 +19,23 @@ int _printf(const char *format, ...)
 	{
 		/* for nomal characters */
 		if (format[i] != '%')
-			char_count += _putchar(format[i]);
-
-		if (format[i] == '%')
 		{
-			/* for a case like '%%' */
-			if (format[++i] == '%')
-				char_count += _putchar('%');
-			else
-				match_spec(format[i], args);
+			char_count += _putchar(format[i]);
+			continue;
+		}
+		/* for '%%' */
+		if (format[++i] == '%')
+		{
+			char_count += _putchar('%');
+			continue;
+		}
+		/* checks for %[possible specifier] */
+		check = match_spec(format[i], args);
+		/* if no specifier is found */
+		if (check == 1)
+		{
+			char_count += _putchar(format[i - 1]);/*prints %*/
+			char_count += _putchar(format[i]);/*then non-specifier character*/
 		}
 	}
 	va_end(args);
