@@ -38,12 +38,13 @@ int to_binary(va_list arg)
  */
 int print_unsigned_int(va_list arg)
 {
-	int i, n, temp, digit, char_count = 0, digits = 0, divisor = 1;
+	int i, digit, char_count = 0, digits = 0, divisor = 1;
 	char digit_char;
+	unsigned int n, temp;
 
 	n = va_arg(arg, int);
-	if (n < 0)
-		n = -n;
+	if (n == 0)
+		return (_putchar(0 + '0'));
 
 	temp = n;
 	while (temp)
