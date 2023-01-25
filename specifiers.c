@@ -78,7 +78,8 @@ int print_unsigned_oct(va_list arg)
 	int char_count = 0;
 
 	num = va_arg(arg, int);
-
+	if (num == 0)
+		return (_putchar(0 + '0'));
 	do {
 		oct_num[i++] = (num % 8) + '0';
 		num /= 8;
@@ -102,6 +103,8 @@ int hex_lower(va_list arg)
 	char hex_digits[] = "0123456789abcdef";
 	char hex_str[sizeof(unsigned int) * 2 + 1];
 
+	if (n == 0)
+		return (_putchar(0 + '0'));
 	for (i = sizeof(unsigned int) * 2 - 1; i >= 0; i--)
 	{
 		hex_str[i] = hex_digits[n & 0xF];
@@ -126,6 +129,8 @@ int hex_UPPER(va_list arg)
 	char hex_digits[] = "0123456789ABCDEF";
 	char hex_str[sizeof(unsigned int) * 2 + 1];
 
+	if (n == 0)
+		return (_putchar(0 + '0'));
 	for (i = sizeof(unsigned int) * 2 - 1; i >= 0; i--)
 	{
 		hex_str[i] = hex_digits[n & 0xF];
