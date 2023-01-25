@@ -1,5 +1,6 @@
 #include "main.h"
 #include <unistd.h>
+#include <limits.h>
 
 /**
  * print_string - prints a string to stdout
@@ -26,7 +27,7 @@ int print_string(va_list str)
  * print_int - prints an integer
  *
  * @arg: argument pointer to integer to be printed
- * Return: On success 0
+ * Return: number of characters printed
  */
 int print_int(va_list arg)
 {
@@ -34,17 +35,22 @@ int print_int(va_list arg)
 	char digit_char;
 
 	n = va_arg(arg, int);
+	if (n == 0)
+		return (_putchar(0 + '0'));
+	if (n == INT_MIN)
+	{
+		char_count += _putchar('-');
+		char_count += _putchar('2');
+		n = 147483648;
+	}
 	if (n < 0)
 	{
 		char_count += _putchar('-');
 		n = -n;
 	}
 	temp = n;
-	while (temp)
-	{
+	for (; temp; digits++)
 		temp /= 10;
-		digits++;
-	}
 	for (i = 1; i < digits; i++)
 		divisor *= 10;
 	for (i = digits - 1; i >= 0; i--)
