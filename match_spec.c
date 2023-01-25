@@ -5,7 +5,7 @@
  *
  * @ch: specifier to be matched
  * @args: argument pointer that holds the value to be printed
- * Return: 0 if a specifier is found. Otherwise 1
+ * Return: -1 if a specifier is not found. Otherwise any other number
 */
 int match_spec(char ch, va_list args)
 {
@@ -27,10 +27,7 @@ int match_spec(char ch, va_list args)
 	for (; match[i].c; i++)
 	{
 		if (ch == *(match[i].c))
-		{
-			match[i].ptr(args);
-			return (0);
-		}
+			return (match[i].ptr(args));
 	}
-	return (1);
+	return (-1);
 }

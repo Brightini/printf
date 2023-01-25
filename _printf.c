@@ -11,7 +11,7 @@ int _printf(const char *format, ...)
 	int i = 0, char_count = 0, check;
 	va_list args;
 
-	if (!format)
+	if (!format || (format[0] == '%' && format[1] == '\0'))
 		return (-1);
 
 	va_start(args, format);
@@ -32,11 +32,13 @@ int _printf(const char *format, ...)
 		/* checks for %[possible specifier] */
 		check = match_spec(format[i], args);
 		/* if no specifier is found */
-		if (check == 1)
+		if (check == -1)
 		{
 			char_count += _putchar(format[i - 1]);/*prints %*/
 			char_count += _putchar(format[i]);/*then non-specifier character*/
 		}
+		else
+			char_count += check;
 	}
 	va_end(args);
 	return (char_count);

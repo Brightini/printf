@@ -5,16 +5,21 @@
  * print_string - prints a string to stdout
  *
  * @str: argument pointer to string
- * Return: On success 0
+ * Return: number of characters printed
  */
 int print_string(va_list str)
 {
-	int i;
+	int i, char_count = 0;
 	char *temp = va_arg(str, char *);
 
+	if (!temp)
+		temp = "(null)";
+	/*for empty string*/
+	if (*temp == '\0')
+		return (0);
 	for (i = 0; temp[i] != '\0'; i++)
-		_putchar(temp[i]);
-	return (0);
+		char_count += _putchar(temp[i]);
+	return (char_count);
 }
 
 /**
@@ -25,13 +30,13 @@ int print_string(va_list str)
  */
 int print_int(va_list arg)
 {
-	int i, n, temp, digit, digits = 0, divisor = 1;
+	int i, n, temp, digit, char_count = 0, digits = 0, divisor = 1;
 	char digit_char;
 
 	n = va_arg(arg, int);
 	if (n < 0)
 	{
-		_putchar('-');
+		char_count += _putchar('-');
 		n = -n;
 	}
 	temp = n;
@@ -46,11 +51,11 @@ int print_int(va_list arg)
 	{
 		digit = n / divisor;
 		digit_char = digit + '0';
-		_putchar(digit_char);
+		char_count += _putchar(digit_char);
 		n %= divisor;
 		divisor /= 10;
 	}
-	return (0);
+	return (char_count);
 }
 
 /**
