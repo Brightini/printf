@@ -9,10 +9,13 @@
  */
 int to_binary(va_list arg)
 {
-	int i = 0, j, n, char_count = 0, binary_num[32];
+	int i = 0, j, char_count = 0, binary_num[32];
 	char c;
+	unsigned int n;
 
 	n = va_arg(arg, int);
+	if (n == 0)
+		return (_putchar(0 + '0'));
 	while (n > 0)
 	{
 		binary_num[i] = n % 2;
