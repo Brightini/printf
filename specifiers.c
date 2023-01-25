@@ -98,21 +98,10 @@ int print_unsigned_oct(va_list arg)
  */
 int hex_lower(va_list arg)
 {
-	int i, char_count = 0;
+	int char_count = 0;
 	unsigned int n = va_arg(arg, int);
-	char hex_digits[] = "0123456789abcdef";
-	char hex_str[sizeof(unsigned int) * 2 + 1];
 
-	if (n == 0)
-		return (_putchar(0 + '0'));
-	for (i = sizeof(unsigned int) * 2 - 1; i >= 0; i--)
-	{
-		hex_str[i] = hex_digits[n & 0xF];
-		n >>= 4;
-	}
-	hex_str[sizeof(unsigned int) * 2] = '\0';
-
-	char_count += write(1, hex_str, sizeof(unsigned int) * 2);
+	char_count = print_hex(n, 'a');
 	return (char_count);
 }
 
@@ -124,20 +113,9 @@ int hex_lower(va_list arg)
  */
 int hex_UPPER(va_list arg)
 {
-	int i, char_count = 0;
+	int char_count = 0;
 	unsigned int n = va_arg(arg, int);
-	char hex_digits[] = "0123456789ABCDEF";
-	char hex_str[sizeof(unsigned int) * 2 + 1];
 
-	if (n == 0)
-		return (_putchar(0 + '0'));
-	for (i = sizeof(unsigned int) * 2 - 1; i >= 0; i--)
-	{
-		hex_str[i] = hex_digits[n & 0xF];
-		n >>= 4;
-	}
-	hex_str[sizeof(unsigned int) * 2] = '\0';
-
-	char_count += write(1, hex_str, sizeof(unsigned int) * 2);
+	char_count = print_hex(n, 'A');
 	return (char_count);
 }

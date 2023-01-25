@@ -33,4 +33,7 @@ int print_adress(va_list);
 int hex_lower(va_list);
 int hex_UPPER(va_list);
 
+/* in functions.c */
+int print_hex(unsigned int, int);
+
 #endif
