@@ -19,7 +19,44 @@ int print_string(va_list str)
 	if (*temp == '\0')
 		return (0);
 	for (i = 0; temp[i] != '\0'; i++)
+	{
+		/* for the %S specifier (non-printable charaters) */
+		if ((temp[i] > 0 && temp[i] < 32) || temp[i] >= 127)
+		{
+			char_count += _putchar('\\');
+			char_count += _putchar('x');
+			/* to ensure hex value of 2 characters. */
+			/* Decimal values >= 16 and < 32 already have two */
+			/* characters when converted to hex */
+			if (temp[i] < 16)
+				char_count += _putchar('0');
+			char_count += print_hex(temp[i], 'A');
+			continue;
+		}
 		char_count += _putchar(temp[i]);
+	}
+	return (char_count);
+}
+
+/**
+ * _puts - prints a string to stdout
+ *
+ * @str: argument pointer to string
+ * Return: number of characters printed
+ */
+int _puts(char *str)
+{
+	int i, char_count = 0;
+
+	if (!str)
+		str = "(null)";
+	/*for empty string*/
+	if (*str == '\0')
+		return (0);
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		char_count += _putchar(str[i]);
+	}
 	return (char_count);
 }
 

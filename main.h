@@ -24,6 +24,7 @@ int print_int(va_list);
 int print_string(va_list);
 int print_char(va_list);
 int _putchar(char);
+int _puts(char *str);
 
 /* in specifiers.c file */
 int to_binary(va_list);
@@ -35,5 +36,6 @@ int hex_UPPER(va_list);
 
 /* in functions.c */
 int print_hex(unsigned int, int);
+int print_address(va_list ptr);
 
 #endif
