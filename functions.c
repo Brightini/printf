@@ -56,6 +56,8 @@ int print_address(va_list arg)
 	char *ptr;
 	unsigned int remainder;
 
+	if (!add)
+		return (_puts("(nil)"));
 	/* starts printing with these */
 	char_count += _puts("0x");
 	size = sizeof(uintptr_t) * 2;
@@ -64,7 +66,6 @@ int print_address(va_list arg)
 	ptr = malloc(size);
 	if (ptr == NULL)
 		return (-1);
-
 	/*putting each character in malloc'ed space*/
 	for (; i < size; i++)
 	{
@@ -89,6 +90,5 @@ int print_address(va_list arg)
 		}
 	}
 	free(ptr);
-
 	return (char_count);
 }
