@@ -130,3 +130,41 @@ int rot13(va_list arg)
 	dup[i] = '\0';
 	return (_puts(dup));
 }
+
+/**
+ * np_characters - prints a string to stdout and handles conversion
+ * specifier for non-printable characters, coverting them to hex
+ *
+ * @str: argument pointer to string
+ * Return: number of characters printed
+ */
+int np_characters(va_list str)
+{
+	int i, char_count = 0;
+	char *temp = va_arg(str, char *);
+
+	if (!temp)
+		temp = "(null)";
+	/*for empty string*/
+	if (*temp == '\0')
+		return (0);
+	for (i = 0; temp[i] != '\0'; i++)
+	{
+		/* for the %S specifier (non-printable charaters) */
+		if ((temp[i] > 0 && temp[i] < 32) || temp[i] >= 127)
+		{
+			char_count += _putchar('\\');
+			char_count += _putchar('x');
+			/* to ensure hex value of 2 characters. */
+			/* Decimal values >= 16 and < 32 already have two */
+			/* characters when converted to hex */
+			if (temp[i] < 16)
+				char_count += _putchar('0');
+			char_count += print_hex(temp[i], 'A');
+			continue;
+		}
+		else
+		char_count += _putchar(temp[i]);
+	}
+	return (char_count);
+}

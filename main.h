@@ -38,6 +38,7 @@ int hex_UPPER(va_list);
 /* in functions.c */
 int print_hex(unsigned int, int);
 int print_address(va_list ptr);
+int np_characters(va_list str);
 int rot13(va_list);
 
 #endif
