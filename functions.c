@@ -92,3 +92,41 @@ int print_address(va_list arg)
 	free(ptr);
 	return (char_count);
 }
+
+/**
+ * rot13 - encodes a string using rot13
+ *
+ * @arg: argument pointer to array of characters
+ * Return: number of characters printed
+ */
+int rot13(va_list arg)
+{
+	int i, j, len;
+	char *alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char *rot_code = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	char *s = va_arg(arg, char *), *dup;
+
+	if (!s)
+		return (_puts(s));
+
+	/* get length of @s and duplicate */
+	len = _strlen(s);
+	dup = malloc(sizeof(char) * (len + 1)); /* +1 for null terminator */
+	if (!dup)
+		return (-1);
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		for (j = 0; alpha[j] != '\0'; j++)
+		{
+			if (s[i] == alpha[j])
+			{
+				dup[i] = rot_code[j]; /* encode using rot13 */
+				break;
+			}
+			dup[i] = s[i]; /* copy other regular characters */
+		}
+	}
+	dup[i] = '\0';
+	return (_puts(dup));
+}

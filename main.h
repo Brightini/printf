@@ -17,6 +17,7 @@ typedef struct char_func
 
 int _printf(const char *format, ...);
 int match_spec(char, va_list);
+int _strlen(char *s);
 
 
 /* in write_functions.c file */
@@ -37,5 +38,6 @@ int hex_UPPER(va_list);
 /* in functions.c */
 int print_hex(unsigned int, int);
 int print_address(va_list ptr);
+int rot13(va_list);
 
 #endif

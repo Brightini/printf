@@ -23,6 +23,7 @@ int match_spec(char ch, va_list args)
 		{"x", hex_lower},
 		{"X", hex_UPPER},
 		{"p", print_address},
+		{"R", rot13},
 		{NULL, NULL},
 	};
 
