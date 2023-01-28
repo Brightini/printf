@@ -15,7 +15,7 @@ int match_spec(char ch, va_list args)
 		{"d", print_int},
 		{"i", print_int},
 		{"s", print_string},
-		{"S", print_string},
+		{"S", np_characters},
 		{"c", print_char},
 		{"b", to_binary},
 		{"u", print_unsigned_int},
