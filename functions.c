@@ -168,3 +168,26 @@ int np_characters(va_list str)
 	}
 	return (char_count);
 }
+
+/**
+ * reverse_string - prints a string in reverse
+ *
+ * @arg: argument pointer to string
+ * Return: number of characters printed
+*/
+int reverse_string(va_list arg)
+{
+	int index, char_count = 0, len;
+	char *s = va_arg(arg, char *);
+
+	if (!s)
+		return (_puts(s));
+
+	/* get length of @s */
+	len = _strlen(s);
+
+	for (index = len - 1; index >= 0; index--)
+		char_count += _putchar(s[index]);
+
+	return (char_count);
+}

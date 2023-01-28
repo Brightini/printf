@@ -40,5 +40,6 @@ int print_hex(unsigned int, int);
 int print_address(va_list ptr);
 int np_characters(va_list str);
 int rot13(va_list);
+int reverse_string(va_list);
 
 #endif
